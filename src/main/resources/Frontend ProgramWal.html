@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Form User</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <script>
+        $(document).ready(function() {
+            $("#submit").click(function(event) {
+                event.preventDefault();
+
+                const id = $("#id").val();
+                const name = $("#name").val();
+                const surname = $("#surname").val();
+
+                console.log(id);
+                console.log(name);
+                console.log(surname);
+
+                $.ajax({
+                    url: "http://localhost:8080/controller/addUser",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ id: id, name: name, surname: surname }),
+                    success: function(response) {
+                        console.log(response);
+                        alert("Dati inviati con successo!");
+
+                    },
+                    error: function() {
+                        alert("Errore durante l'invio dei dati al server.");
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-$END$
+<form>
+  <label for="id">ID:</label>
+  <input name="id" id="id" type="number" autocomplete="family-name" />
+  <br>
+  <label for="name">Name:</label>
+  <input name="name" id="name" type="text" autocomplete="given-name" />
+  <br>
+  <label for="surname">Surname:</label>
+  <input name="surname" id="surname" type="text" autocomplete="given-name" />
+  <br>
+  <input type="submit" value="Invia" id="submit" />
+</form>
 </body>
 </html>
