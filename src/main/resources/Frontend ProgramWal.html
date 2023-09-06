@@ -10,19 +10,17 @@
             $("#submit").click(function(event) {
                 event.preventDefault();
 
-                const id = $("#id").val();
-                const name = $("#name").val();
-                const surname = $("#surname").val();
 
-                console.log(id);
-                console.log(name);
-                console.log(surname);
+                const nome = $("#name").val();
+                const cognome = $("#surname").val();
+                const numeroditelefono = $("#numeroditelefono").val();
+                const email = $("#email").val();
 
-                $.ajax({
+              $.ajax({
                     url: "http://localhost:8080/controller/addUser",
                     method: "POST",
                     contentType: "application/json",
-                    data: JSON.stringify({ id: id, name: name, surname: surname }),
+                    data: JSON.stringify({ nome: nome, cognome: cognome, numeroditelefono: numeroditelefono, email: email }),
                     success: function(response) {
                         console.log(response);
                         alert("Dati inviati con successo!");
@@ -34,19 +32,25 @@
                 });
             });
         });
+
     </script>
 </head>
 <body>
 <form>
-  <label for="id">ID:</label>
-  <input name="id" id="id" type="number" autocomplete="family-name" />
+
+  <label for="name">Nome:</label>
+  <input name="name" id="name" type="text" autocomplete="family-name" required />
   <br>
-  <label for="name">Name:</label>
-  <input name="name" id="name" type="text" autocomplete="given-name" />
+  <label for="surname">Cognome:</label>
+  <input name="surname" id="surname" type="text" autocomplete="given-name" required />
   <br>
-  <label for="surname">Surname:</label>
-  <input name="surname" id="surname" type="text" autocomplete="given-name" />
+  <label for="numeroditelefono">Numero di telefono</label>
+  <input type="text" id="numeroditelefono" name="numeroditelefono"  />
   <br>
+  <label for="email">email</label>
+  <input name="email" id="email" type="text" autocomplete="given-name" />
+  <br>
+
   <input type="submit" value="Invia" id="submit" />
 </form>
 </body>

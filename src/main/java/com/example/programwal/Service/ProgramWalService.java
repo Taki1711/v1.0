@@ -34,8 +34,10 @@ public class ProgramWalService {
         ProgramWalEntity user = programWalRepo.findById(utente.getId()).get();
         System.out.println(utente.getId());
         if(user!=null){
-            user.setName(utente.getName());
-            user.setSurname(utente.getSurname());
+            user.setNome(utente.getNome());
+            user.setCognome(utente.getCognome());
+            user.setEmail(utente.getEmail());
+            user.setNumeroditelefono(utente.getNumeroditelefono());
             ProgramWalEntity newUser = programWalRepo.save(utente);
             return ResponseEntity.ok(newUser);
         }else {
